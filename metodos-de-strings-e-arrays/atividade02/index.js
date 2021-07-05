@@ -1,48 +1,38 @@
 //Tente fazer sozinha, resposta para conferência.
 
-const carro = {
-    ligado: false,
-    velocidade: 0,
-    ligar: function () {
-        if(this.ligado){
-            console.log("Este carro já está ligado.");
-        }else{
-            this.ligado = true;
-            console.log(`Carro ${this.ligado === true ? "ligado" : "desligado"}. Velocidade: ${this.velocidade}.`);
+function validarCpf (cpf){
+    let cpfFormatado =[];
+    if (cpf.length === 11){
+        cpfFormatado = cpf.split("");
+        for( let i = 3; i < 8; i += 4){
+           cpfFormatado.splice(i, 0, ".");
         }
-    },
-    desligar: function (){
-        if(!this.ligado){
-            console.log("Este carro já está desligado.");
-        }else{
-            this.ligado = false;
-            this.velocidade = 0;
-            console.log(`Carro ${this.ligado === true ? "ligado" : "desligado"}. Velocidade: ${this.velocidade}.`);
-        }
-    },
-    acelerar: function () {
-        if(!this.ligado){
-            console.log("Não é possível acelerar um carro desligado.")
-        }else{
-            this.velocidade += 10;
-            console.log(`Carro ${this.ligado === true ? "ligado" : "desligado"}. Velocidade: ${this.velocidade}.`);
-        }
-    },
-    desacelerar: function () {
-        if(!this.ligado){
-            console.log("Não é possível desacelerar um carro desligado.");
-        }else{
-            this.velocidade -= 10;
-            console.log(`Carro ${this.ligado === true ? "ligado" : "desligado"}. Velocidade: ${this.velocidade}.`);
-        }
+        cpfFormatado.splice(-2, 0, "-");
+        cpfFormatado = cpfFormatado.join("");
+        console.log(cpfFormatado);
+    }else{
+        console.log("CPF Inválido")
     }
 }
-carro.desligar();
-carro.ligar();
-carro.ligar();
-carro.acelerar();
-carro.acelerar();
-carro.desacelerar();
-carro.desligar();
-carro.acelerar();
-carro.desacelerar();
+function validarCnpj (cnpj){
+    let cnpjFormatado =[];
+    if (cnpj.length === 14){
+        cnpjFormatado = cnpj.split("");
+        for( let i = 2; i < 12; i += 4){
+           if (i < 8){
+               cnpjFormatado.splice(i, 0, ".");
+           }else{
+            cnpjFormatado.splice(i, 0, "/");
+           }
+        }
+        cnpjFormatado.splice(-2, 0, "-");
+        cnpjFormatado = cnpjFormatado.join("");
+        console.log(cnpjFormatado);
+    }else{
+        console.log("CNPJ Inválido")
+    }
+}
+const cpf = "12345678900";
+const cnpj = "12345678900000";
+validarCpf(cpf);
+validarCnpj(cnpj);

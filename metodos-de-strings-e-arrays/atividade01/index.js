@@ -1,41 +1,12 @@
 //Tente fazer sozinha, resposta para conferência.
-function corrigirProva(prova){
-    let corretas = 0;
-    for (let item of prova.questoes){
-        if(item.resposta === item.correta){
-            corretas++;
-        }
+
+function filtrarComentario (text){
+    text = text.toLowerCase();
+    if(text.includes("covid") || text.includes("pandemia")){
+        console.log("Comentário bloqueado por conter palavras proibidas");
+    }else{
+        console.log("Comentário autorizado.");
     }
-    const nota = (prova.valor / prova.questoes.length) * corretas;
-    console.log(`O aluno(a) ${prova.aluno} acertou ${corretas} questões e obteve nota ${nota}`);
-};
-
-
-const prova = {
-    aluno: "João",
-    materia: "Português",
-    valor: 10,
-    questoes: [
-        {
-            resposta: "a",
-            correta: "b"
-        },
-        {
-            resposta: "c",
-            correta: "c"
-        },
-        {
-            resposta: "e",
-            correta: "b"
-        },
-        {
-            resposta: "b",
-            correta: "b"
-        },
-        {
-            resposta: "c",
-            correta: "c"
-        }
-    ]
-};
-corrigirProva(prova);
+}
+const comentario = "Esse COVID é muito perigoso!";
+filtrarComentario(comentario);
